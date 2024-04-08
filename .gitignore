@@ -12,7 +12,7 @@ conf/*
 
 
 # Python venv
-.dbtenv/
+my_venv/
 
 
 
@@ -145,3 +145,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#config
+config/
