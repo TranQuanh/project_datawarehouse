@@ -1,28 +1,49 @@
-WITH stag_sales_order_header AS(
-    SELECT *
-    FROM `adventureworks2019.Sales.SalesOrderHeader`
+WITH sales_order_header__source AS(
+    SELECT *   
+    FROM `adventureworks2019.Sales.SalesOrderHeader` sale_header
+
 ),
-stag_sales_order_header_cast AS(
-   SELECT salesOrderID,
-          CAST(OrderDate AS DATETIME) AS OrderDate,
-          SalesOrderNumber,
-          CustomerID,
-          CAST(SalesPersonID AS INT) AS SalesPersonID,
-          TerritoryID,
-          Status,
-          TotalDue
-   FROM stag_sales_order_header
+
+  sales_order_header__rename AS( 
+    SELECT 
+      SalesOrderID AS sales_order_key,
+      OrderDate as order_date,
+      SalesOrderNumber as sales_order_number,
+      CustomerID as customer_key,
+      SalesPersonID as sales_person_key,
+      TerritoryID as territory_key,
+      status as status,
+      TotalDue as total_due
+    FROM sales_order_header__source
+  ),
+
+sales_order_header__excecute_NULL AS(
+   SELECT  
+          sales_order_key,
+          order_date,
+          sales_order_number,
+          customer_key,
+          REPLACE(sales_person_key, 'NULL', '-1') as sales_person_key,
+          COALESCE(territory_key,-1) as territory_key,
+          status,
+          total_due,
+    FROM sales_order_header__rename
+
 ),
-stag_sales_order_header_excecute_NULL AS(
-   SELECT salesOrderID,
-          COALESCE(OrderDate,"9999-12-31")  AS OrderDate,
-          SalesOrderNumber,
-          CustomerID,
-          COALESCE(SalesPersonID,-1) as SalesPersonID,
-          COALESCE(TerritoryID,-1) as TerritoryID,
-          Status,
-          TotalDue
-   FROM stag_sales_order_header_cast
-)
-SELECT *
-FROM stag_sales_order_header_excecute_NULL
+  sales_order_header__cast_type  AS (    
+  SELECT
+    cast(sales_order_key as integer) as sales_order_key,
+    cast(order_date as date) AS order_date,
+    cast(sales_order_number as string) AS sales_order_number,
+    cast(customer_key as integer) as customer_key,
+    cast(sales_person_key as integer) as sales_person_key,
+    cast(territory_key as integer) as territory_key,
+    cast(status as integer) status,
+    cast(total_due as numeric) total_due 
+  FROM sales_order_header__excecute_NULL
+    ) 
+
+
+  SELECT
+      *
+  FROM sales_order_header__cast_type
