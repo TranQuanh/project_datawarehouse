@@ -61,8 +61,8 @@ prodcut_cast_type AS(
         CAST(style as string) as style,
         CAST(product_subcategory_key as integer) as product_subcategory_key,
         CAST(product_model_key as integer) as product_model_key,
-        CAST(sell_start_date as datetime) as sell_start_date,
-        CAST(sell_end_date as datetime) as sell_end_date
+        CAST(sell_start_date as date) as sell_start_date,
+        CAST(sell_end_date as date) as sell_end_date
     FROM product_excexute_NULL
 )
 SELECT *
