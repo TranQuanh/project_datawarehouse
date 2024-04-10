@@ -23,7 +23,7 @@ product_rename AS(
         SellEndDate as sell_end_date
     FROM product_source
 ),
-product_excexute_NULL AS(
+product_excecute_NULL AS(
     SELECT
         product_key,
         product_name,
@@ -44,7 +44,7 @@ product_excexute_NULL AS(
         REPLACE(sell_end_date,"NULL",'9999-12-31') as sell_end_date
     FROM product_rename
 ),
-prodcut_cast_type AS(
+product_cast_type AS(
     SELECT
         CAST(product_key AS integer) as product_key,
         CAST(product_name AS string) as product_name,
@@ -62,9 +62,9 @@ prodcut_cast_type AS(
         CAST(product_subcategory_key as integer) as product_subcategory_key,
         CAST(product_model_key as integer) as product_model_key,
         CAST(sell_start_date as date) as sell_start_date,
-        CAST(sell_end_date as date) as sell_end_date
-    FROM product_excexute_NULL
+        sell_end_date  as sell_end_date
+    FROM product_excecute_NULL
 )
 SELECT *
-FROM prodcut_cast_type
+FROM product_cast_type
 

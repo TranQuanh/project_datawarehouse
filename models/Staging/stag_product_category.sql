@@ -4,7 +4,7 @@ WITH product_category_source AS(
 ),
 product_category_rename AS(
     SELECT ProductCategoryID as product_category_key,
-    Name as product_category_rename
+    Name as product_category_name
     FROM product_category_source
 )
 SELECT* 

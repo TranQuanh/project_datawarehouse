@@ -4,7 +4,7 @@ WITH product_model_source AS(
 ),
 product_model_rename AS(
     SELECT ProductModelID as product_model_key,
-           Name as product_model_rename
+           Name as product_model_name
     FROM product_model_source
 )
 SELECT *
