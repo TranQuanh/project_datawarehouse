@@ -13,7 +13,7 @@ purchase_order_header_rename AS(
 purchase_order_header_excecution_NULL AS(
     SELECT
          purchase_order_key,
-         COALESCE(vendor_key,-1) as vendor_key,
+         vendor_key as vendor_key,
          order_date,
          ship_date,
     FROM purchase_order_header_rename

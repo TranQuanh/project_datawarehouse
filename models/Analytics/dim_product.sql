@@ -1,5 +1,4 @@
 SELECT
-      ROW_NUMBER() OVER () as dim_product_key,
       product.product_key AS product_key,
       product.product_name AS product_name,
       product.product_number AS product_number,
@@ -13,11 +12,11 @@ SELECT
       product.product_line AS product_line,
       product.class AS class,
       product.style AS style,
-      product.product_subcategory_key AS product_subcategory_key,
+      COALESCE(product.product_subcategory_key,-1) AS product_subcategory_key,
       product_subcategory.product_subcategory_name AS product_subcategory_name,
-      product_subcategory.product_category_key AS product_category_key,
+      COALESCE(product_subcategory.product_category_key,-1) AS product_category_key,
       product_category.product_category_name AS product_category_name,
-      product.product_model_key AS product_model_key,
+      COALESCE(product.product_model_key,-1) AS product_model_key,
       product_model.product_model_name AS product_model_name,
       product.sell_start_date AS sell_start_date,
       product.sell_end_date AS sell_end_date
@@ -25,5 +24,50 @@ FROM {{ref('stag_product')}} product
 LEFT JOIN {{ref('stag_product_subcategory')}} product_subcategory ON product.product_subcategory_key=product_subcategory.product_subcategory_key
 LEFT JOIN {{ref('stag_product_category')}} product_category ON product_subcategory.product_category_key=product_category.product_category_key
 LEFT JOIN {{ref('stag_product_model')}} product_model ON product.product_model_key=product_model.product_model_key
-
+UNION ALL
+SELECT
+      -1 AS product_key,
+      "Invalid" AS product_name,
+      "Invalid" AS product_number,
+      NULL AS make_flag,
+      NULL as finish_goods_flag,
+      "Invalid" AS color,
+      "Invalid" AS size,
+      "Invalid" AS size_unit_measure_code,
+      "Invalid" AS weight,
+      "Invalid" AS weight_unit_measure_code,
+      "Invalid" AS product_line,
+      "Invalid" AS class,
+      "Invalid"AS style,
+      -1 AS product_subcategory_key,
+      "Invalid" AS product_subcategory_name,
+      -1 AS product_category_key,
+      "Invalid" AS product_category_name,
+      -1 AS product_model_key,
+      "Invalid" AS product_model_name,
+      NULL AS sell_start_date,
+      NULL AS sell_end_date
+UNION ALL
+SELECT
+      0 AS product_key,
+      "Undefined" AS product_name,
+      "Undefined" AS product_number,
+      NULL AS make_flag,
+      NULL as finish_goods_flag,
+      "Undefined" AS color,
+      "Undefined" AS size,
+      "Undefined" AS size_unit_measure_code,
+      "Undefined" AS weight,
+      "Undefined" AS weight_unit_measure_code,
+      "Undefined" AS product_line,
+      "Undefined" AS class,
+      "Undefined"AS style,
+      0 AS product_subcategory_key,
+      "Undefined" AS product_subcategory_name,
+      0 AS product_category_key,
+      "Undefined" AS product_category_name,
+      0 AS product_model_key,
+      "Undefined" AS product_model_name,
+      NULL AS sell_start_date,
+      NULL AS sell_end_date
 

@@ -13,8 +13,8 @@ stag_customer__rename AS(
 stag_customer__excecute_NULL AS (
     SELECT
          customer_key,
-         REPLACE(person_key,"NULL","-1") as person_key,
-         REPLACE(store_key,"NULL","-1") as store_key,
+         REPLACE(person_key,"NULL","0") as person_key,
+         REPLACE(store_key,"NULL","0") as store_key,
          account_number,
     FROM stag_customer__rename
 ),

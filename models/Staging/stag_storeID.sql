@@ -12,7 +12,7 @@ storeID_rename AS(
 storeID_excecute_NULL AS(
     SELECT 
          customer_key as customer_key,
-         REPLACE(store_key,"NULL","-1") as store_key,
+         store_key as store_key,
          store_name
     FROM storeID_rename
 ),

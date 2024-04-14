@@ -22,9 +22,9 @@ sales_order_header__excecute_NULL AS(
           sales_order_key,
           COALESCE(order_date,'9999-12-31') as order_date,
           sales_order_number,
-          COALESCE(customer_key,-1) as customer_key,
-          REPLACE(sales_person_key, 'NULL', '-1') as sales_person_key,
-          COALESCE(territory_key,-1) as territory_key,
+          COALESCE(customer_key,0) as customer_key,
+          REPLACE(sales_person_key, 'NULL', '0') as sales_person_key,
+          COALESCE(territory_key,0) as territory_key,
           status,
           total_due,
     FROM sales_order_header__rename

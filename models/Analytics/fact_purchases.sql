@@ -1,5 +1,4 @@
 SELECT 
-       ROW_NUMBER() OVER () as fact_purchase_key,
        header.*,
        detail.purchase_order_detail_key,
        detail.order_qty,

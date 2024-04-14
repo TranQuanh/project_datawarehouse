@@ -11,7 +11,7 @@ product_subcategory_rename AS(
 ),
 product_subcategory_excecute_NULL AS(
     SELECT product_subcategory_key,
-           COALESCE(product_category_key,-1) as product_category_key,
+           product_category_key as product_category_key,
            product_subcategory_name
     FROM product_subcategory_rename
 )

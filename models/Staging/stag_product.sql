@@ -38,8 +38,8 @@ product_excecute_NULL AS(
         product_line,
         class,
         style,
-        REPLACE(product_subcategory_key,"NULL","-1") as product_subcategory_key,
-        REPLACE(product_model_key,"NULL","-1") as product_model_key,
+        REPLACE(product_subcategory_key,"NULL","0") as product_subcategory_key,
+        REPLACE(product_model_key,"NULL","0") as product_model_key,
         sell_start_date,
         REPLACE(sell_end_date,"NULL",'9999-12-31') as sell_end_date
     FROM product_rename

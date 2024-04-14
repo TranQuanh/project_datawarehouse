@@ -19,7 +19,7 @@ sales_orders_detail__excecute_NULL AS(
         sales_order_key,
         sales_order_detail_key,
          order_qty,
-         COALESCE(product_key,-1) as product_key,
+         COALESCE(product_key,0) as product_key,
          unit_price,
          unit_price_discount,
          line_total
