@@ -9,3 +9,12 @@ product_model_rename AS(
 )
 SELECT *
 FROM product_model_rename
+UNION ALL
+SELECT  
+    -1 as product_model_key,
+    "Invalid" as product_model_name
+UNION ALL
+SELECT
+    0 as product_model_key,
+    "Undefined" as product_model_name
+

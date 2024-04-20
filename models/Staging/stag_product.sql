@@ -67,4 +67,43 @@ product_cast_type AS(
 )
 SELECT *
 FROM product_cast_type
+UNION ALL
+SELECT
+      -1 AS product_key,
+      "Invalid" AS product_name,
+      "Invalid" AS product_number,
+      NULL AS make_flag,
+      NULL as finish_goods_flag,
+      "Invalid" AS color,
+      "Invalid" AS size,
+      "Invalid" AS size_unit_measure_code,
+      "Invalid" AS weight,
+      "Invalid" AS weight_unit_measure_code,
+      "Invalid" AS product_line,
+      "Invalid" AS class,
+      "Invalid"AS style,
+       -1 as product_subcategory_key,
+        -1 as product_model_key,
+      NULL AS sell_start_date,
+      NULL AS sell_end_date
+UNION ALL
+SELECT
+      0 AS product_key,
+      "Undefined" AS product_name,
+      "Undefined" AS product_number,
+      NULL AS make_flag,
+      NULL as finish_goods_flag,
+      "Undefined" AS color,
+      "Undefined" AS size,
+      "Undefined" AS size_unit_measure_code,
+      "Undefined" AS weight,
+      "Undefined" AS weight_unit_measure_code,
+      "Undefined" AS product_line,
+      "Undefined" AS class,
+      "Undefined"AS style,
+       0 as product_subcategory_key,
+        0 as product_model_key,
+      NULL AS sell_start_date,
+      NULL AS sell_end_date
+
 

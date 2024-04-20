@@ -17,3 +17,14 @@ product_subcategory_excecute_NULL AS(
 )
 SELECT *
 FROM product_subcategory_excecute_NULL  
+UNION ALL
+SELECT
+    -1 product_subcategory_key,
+    -1 as product_category_key,
+    "Invalid" product_subcategory_name
+UNION ALL
+SELECT
+    0 product_subcategory_key,
+    0 as product_category_key,
+    "Undefined" product_subcategory_name
+    

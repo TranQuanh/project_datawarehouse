@@ -28,3 +28,15 @@ stag_customer__cast_type AS(
 )
 SELECT *
 FROM stag_customer__cast_type
+UNION ALL 
+SELECT
+      -1 as customer_key,
+      -1 as person_key,
+      -1 as store_key,
+      "Invalid" as account_number
+UNION ALL 
+SELECT
+      0 as customer_key,
+      0 as person_key,
+      0 as store_key,
+      "Undefined" as account_number

@@ -34,3 +34,19 @@ person__cast_type AS(
 )
 SELECT *
 FROM person__cast_type
+UNION ALL
+SELECT
+        -1 person_key,
+        "Invalid" title,
+        "Invalid" first_name,
+        "Invalid"middle_name,
+        "Invalid"last_name,
+        "Invalid" suffix 
+UNION ALL
+SELECT
+        0 person_key,
+        "Undefined" title,
+        "Undefined" first_name,
+        "Undefined"middle_name,
+        "Undefined"last_name,
+        "Undefined" suffix 

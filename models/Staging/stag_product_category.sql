@@ -9,3 +9,11 @@ product_category_rename AS(
 )
 SELECT* 
 FROM product_category_rename
+UNION ALL
+SELECT
+    -1  as product_category_key,
+    "Invalid" as product_category_name
+UNION ALL
+SELECT
+    0  as product_category_key,
+    "Undefined" as product_category_name

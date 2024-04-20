@@ -25,3 +25,14 @@ storeID_cast_type AS(
 )
 SELECT *
 FROM storeID_cast_type
+UNION ALL
+SELECT
+   -1  as customer_key,
+   -1 as store_key,
+   "Invalid" as store_name
+UNION ALL
+SELECT
+    0 as customer_key,
+    0 as store_key,
+    "Undefined" as store_name
+    
